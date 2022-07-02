@@ -1,0 +1,17 @@
+%% function gravity for 5.31 on p.261
+function [Fg]=gravity(m1,m2,r2)
+G=6.672E-11;
+Fg=G*m1*m2/(r^2);
+fprintf('Fg = %f\n',Fg);
+end
+%% Outputs
+% a)
+% ans =
+
+%         0 +25.0000i
+
+% b)
+
+% e)
+
+% 

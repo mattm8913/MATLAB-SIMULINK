@@ -1,0 +1,6 @@
+%Setting Up Viet Cong
+hvc1=imread('VC.jpg');
+hvc2=imresize(hvc1,.35);
+hvc=imshow(hvc2);
+set(hvc,'Xdata',numcols_background);
+set(hvc,'Ydata',(rand()*.25+.48)*numrows_background);

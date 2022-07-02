@@ -1,0 +1,47 @@
+%Fire
+function [hbul,done]=Fire(hi,T,s,numcols_background,hvc,RamboTop)
+bullet=imread('bullet.jpg');
+hbul=imshow(bullet);
+RamboLeft=get(hi,'Xdata');
+set(hbul,'Xdata',RamboLeft+115);
+set(hbul,'Ydata',RamboTop+90);
+pause(T)
+hbulx=get(hbul,'Xdata');
+for j=hbulx(1):90:1235
+    set(hbul,'Xdata',j);
+    [xax,good]=ScanJoyAx(s);
+    if(good)
+        if (xax>780)
+            xax=780;
+        end
+        set(hi,'Xdata',xax/870*numcols_background)
+        pause(T)
+    end
+    VCx=get(hvc,'Xdata');
+    set(hvc,'Xdata',VCx(1)-20)
+    pause(T)
+    VCx=VCx(1)-20;
+    VCTop=get(hvc,'Ydata');
+    VCBottom=VCTop(1)+139;
+    RamboBottom=RamboTop(1)+144;
+    RamboRight=RamboLeft(1)+115;
+    VCRight=VCx(1)+82;
+    if(((VCx(1))<=(RamboLeft(1)+115))&&((VCBottom(1))>=(RamboTop(1)))&&((VCTop(1))<=(RamboBottom(1)))&&((VCRight(1))>=(RamboLeft(1))))
+        done=1;
+        fprintf('\n\nYou Died!!!\n');
+        break
+    else
+        done=0;
+    end
+    BulRight=get(hbul,'Xdata')+57;
+    BulTop=get(hbul,'Ydata');
+    BulBottom=BulTop(1)+18;
+    if(((BulRight(1))>=(VCx(1)))&&(((BulTop(1))<=(VCBottom(1)))&&((BulBottom(1))>=(VCTop(1)))))
+        set(hvc,'Xdata',numcols_background);
+        set(hbul,'Xdata',-58);
+        set(hbul,'Ydata',1);
+        pause(T)
+        break
+    end
+end
+end
